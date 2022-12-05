@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/bramuccci/tmdb-react-app/issues"
   },
-  "homepage": "https://github.com/bramuccci/tmdb-react-app#readme"
+  "homepage": "https://github.com/bramuccci/tmdb-react-app#readme",
+  "dependencies": {
+    "axios": "^1.2.0"
+  }
 }

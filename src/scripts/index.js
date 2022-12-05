@@ -1,3 +1,4 @@
+const fragment = document.createDocumentFragment()
 const api = axios.create({
     baseURL: 'https://api.themoviedb.org/3/',
     headers: {
@@ -7,10 +8,6 @@ const api = axios.create({
         api_key: API_KEY,
     },
 })
-
-const fragment = document.createDocumentFragment()
-const cardTemplate = document.getElementById('card-template').content
-const moviesOnTrending = document.querySelector('.movies-on-trending')
 
 async function getTrendingMoviesPreview() {
     const { data } = await api('trending/movie/day')
@@ -30,11 +27,6 @@ async function getTrendingMoviesPreview() {
     moviesOnTrending.append(fragment)
 }
 
-getTrendingMoviesPreview()
-
-const genresList = document.querySelector('.genres-list')
-const genreTemplate = document.getElementById('genre-template').content
-
 async function getGenresPreview() {
     const { data } = await api('genre/movie/list')
     const genres = data.genres
@@ -48,4 +40,5 @@ async function getGenresPreview() {
     genresList.append(fragment)
 }
 
+getTrendingMoviesPreview()
 getGenresPreview()

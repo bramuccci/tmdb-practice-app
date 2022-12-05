@@ -28,7 +28,7 @@ img{
     margin: auto;
     grid-template-columns: repeat(6, 1fr);
     align-content: flex-start;
-    gap: 1em;
+    gap: 2.5%;
 }
 
 .btn{
@@ -37,6 +37,7 @@ img{
     border-radius: 10em;
     color: #000;
     padding: .25em .75em;
+    cursor: pointer;
 }
 
 .section-trending{
@@ -47,4 +48,8 @@ img{
 
 .section-trending .btn{
     align-self: flex-end;
+}
+
+.page:not(.active){
+    display: none;
 }

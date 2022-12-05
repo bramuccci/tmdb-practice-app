@@ -16,22 +16,37 @@
     </head>
     <body>
         <div id="app">
-            <header>
-                <nav class="primary-nav"></nav>
-                <h1 class="title primary-title"></h1>
-                <button class="btn">Play</button>
-            </header>
-            <section class="section-trending">
-                <h2 class="title secondary-title">Trending</h2>
-                <div class="grid-cards movies-on-trending"></div>
-                <button class="btn">See more</button>
-            </section>
-            <section class="section-explore">
-                <h2 class="title secondary-title">Explore</h2>
-                <nav><a>genres</a></nav>
-                <ul class="genres-list"></ul>
-            </section>
+            <div id="homepage" class="page">
+                <header>
+                    <h1 class="title primary-title">Moonlight</h1>
+                    <button class="btn">Play</button>
+                </header>
+                <section class="section-trending-preview">
+                    <h2 class="title secondary-title">Trending</h2>
+                    <div class="grid-cards movies-on-trending"></div>
+                    <button class="btn btn-trending">See more</button>
+                </section>
+                <section class="section-explore-preview">
+                    <h2 class="title secondary title">Explore</h2>
+                    <button class="btn btn-explore">Search</button>
+                </section>
+            </div>
+
+            <div id="explore" class="page">
+                <section class="section-explore">
+                    <h2 class="title secondary-title">Explore</h2>
+                    <h3>Genres</h3>
+                    <ul class="genres-list"></ul>
+                    <button class="btn btn-back-to-homepage">
+                        Back to Home
+                    </button>
+                </section>
+            </div>
         </div>
+
+        <template id="nav-template">
+            <nav class="primary-nav"></nav>
+        </template>
 
         <template id="card-template">
             <div class="card">
@@ -39,11 +54,13 @@
                 <h3 class="card-title title"></h3>
             </div>
         </template>
+
         <template id="genre-template">
             <li class="genre"></li>
         </template>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script src="./scripts/secrets.js"></script>
+        <script src="./scripts/nodes.js"></script>
         <script src="./scripts/index.js"></script>
         <script src="./scripts/navigation.js"></script>
     </body>

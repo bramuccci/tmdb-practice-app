@@ -24,3 +24,24 @@ async function getTrendingMoviesPreview() {
 }
 
 getTrendingMoviesPreview()
+
+const genresList = document.querySelector('.genres-list')
+const genreTemplate = document.getElementById('genre-template').content
+
+async function getGenresPreview() {
+    const res = await fetch(
+        `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`
+    )
+    const data = await res.json()
+    const genres = data.genres
+
+    genres.forEach(genre => {
+        const clone = genreTemplate.cloneNode(true)
+        clone.querySelector('li').textContent = genre.name
+        fragment.append(clone)
+    })
+
+    genresList.append(fragment)
+}
+
+getGenresPreview()

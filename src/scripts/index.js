@@ -32,12 +32,44 @@ async function getGenresPreview() {
     const genres = data.genres
 
     genres.forEach(genre => {
+        const { id, name } = genre
         const clone = genreTemplate.cloneNode(true)
-        clone.querySelector('li').textContent = genre.name
+        const anchor = clone.querySelector('a')
+        anchor.textContent = genre.name
+        anchor.addEventListener(
+            'click',
+            () => (location.hash = `#category=${id}-${name}`)
+        )
         fragment.append(clone)
     })
 
     genresList.append(fragment)
+}
+
+async function getMoviesByGenre({ id, name }) {
+    const { data } = await api('discover/movie', {
+        params: {
+            with_genres: id,
+        },
+    })
+
+    const movies = data.results
+
+    moviesByGenre.innerHTML = ''
+
+    movies.forEach(movie => {
+        const clone = cardTemplate.cloneNode(true)
+
+        clone.querySelector('.title').textContent = movie.title
+        clone.querySelector(
+            '.cover'
+        ).src = `https://image.tmdb.org/t/p/w300/${movie.poster_path}`
+
+        fragment.append(clone)
+    })
+
+    moviesByGenre.append(fragment)
+    genre.querySelector('.title').textContent = name
 }
 
 getTrendingMoviesPreview()

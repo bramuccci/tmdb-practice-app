@@ -53,3 +53,7 @@ img{
 .page:not(.active){
     display: none;
 }
+
+a{
+    cursor: pointer;
+}

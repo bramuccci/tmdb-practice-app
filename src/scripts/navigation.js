@@ -13,8 +13,8 @@ searchInput.addEventListener('change', e => {
     let value = e.target.value.replace(/ /g, '-')
     location.hash = `#search=${value}`
 })
-
-const pages = document.querySelectorAll('.page')
+buttonPreviousSearch.addEventListener('click', () => history.back())
+buttonNextSearch.addEventListener('click', () => history.forward())
 
 function navigator() {
     pages.forEach(page => page.classList.remove('active'))

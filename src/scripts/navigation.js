@@ -9,10 +9,10 @@ backToCategoriesButton.addEventListener(
     () => (location.hash = '#categories')
 )
 searchButton.addEventListener('click', () => (location.hash = '#search'))
-searchInput.addEventListener(
-    'change',
-    e => (location.hash = `#search=${e.target.value}`)
-)
+searchInput.addEventListener('change', e => {
+    let value = e.target.value.replace(/ /g, '-')
+    location.hash = `#search=${value}`
+})
 
 const pages = document.querySelectorAll('.page')
 
@@ -50,6 +50,6 @@ function printSearch() {
     const regex = /^#search=(.+)$/
     let query = regex.exec(location.hash)
     if (!query) return
-    query = query[1]
+    query = query[1].replace(/\-/g, ' ')
     getMoviesBySearch(query)
 }

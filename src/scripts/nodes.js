@@ -21,7 +21,7 @@ const moviesBySearch = document.querySelector('.movies-by-search')
 // BUTTONS
 const trendingButton = homepage.querySelector('.btn-trending')
 const exploreButton = homepage.querySelector('.btn-explore')
-const backToHomeButton = explore.querySelector('.btn-back-to-homepage')
+const backToHomeButtons = document.querySelectorAll('.btn-back-to-homepage')
 const backToCategoriesButton = genre.querySelector('.btn-back-to-categories')
 const searchButton = homepage.querySelector('.btn-search')
 const buttonPreviousSearch = search.querySelector('.btn-search-back')

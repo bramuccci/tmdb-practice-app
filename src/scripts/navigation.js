@@ -3,7 +3,6 @@ window.addEventListener('hashchange', navigator, false)
 
 trendingButton.addEventListener('click', () => (location.hash = '#trends'))
 exploreButton.addEventListener('click', () => (location.hash = '#categories'))
-backToHomeButton.addEventListener('click', () => (location.hash = ''))
 backToCategoriesButton.addEventListener(
     'click',
     () => (location.hash = '#categories')
@@ -15,6 +14,9 @@ searchInput.addEventListener('change', e => {
 })
 buttonPreviousSearch.addEventListener('click', () => history.back())
 buttonNextSearch.addEventListener('click', () => history.forward())
+backToHomeButtons.forEach(button =>
+    button.addEventListener('click', () => (location.hash = ''))
+)
 
 function navigator() {
     pages.forEach(page => page.classList.remove('active'))

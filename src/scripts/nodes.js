@@ -6,6 +6,7 @@ const homepage = document.getElementById('homepage')
 const explore = document.getElementById('explore')
 const genre = document.getElementById('genre')
 const search = document.getElementById('search')
+const trends = document.getElementById('trends')
 const pages = document.querySelectorAll('.page')
 
 // TEMPLATES

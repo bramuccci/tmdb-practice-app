@@ -33,7 +33,7 @@ function printHomepage() {
 }
 
 function printTrending() {
-    console.log('More trends')
+    trends.classList.add('active')
 }
 
 function printExplore() {

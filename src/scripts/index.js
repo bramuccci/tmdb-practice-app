@@ -64,5 +64,17 @@ async function getMoviesByGenre({ id, name }) {
     genre.querySelector('.title').textContent = name
 }
 
+async function getMoviesBySearch(query) {
+    const { data } = await api('search/movie', {
+        params: {
+            query,
+        },
+    })
+    const movies = data.results
+    moviesBySearch.innerHTML = ''
+    createCards(movies, moviesBySearch)
+    search.querySelector('.title').textContent = query
+}
+
 getTrendingMoviesPreview()
 getGenresPreview()

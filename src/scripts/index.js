@@ -104,6 +104,15 @@ async function getMovieDetail(movieId) {
     cover.src = `https://image.tmdb.org/t/p/w780/${movie.backdrop_path}`
     movieGenres.innerHTML = ''
     createGenreList(movie.genres, movieGenres)
+
+    getRelatedMovies(movieId)
+}
+
+async function getRelatedMovies(movieId) {
+    const { data } = await api(`movie/${movieId}/recommendations`)
+    const relatedMovies = data.results
+    relatedMoviesContainer.innerHTML = ''
+    createCards(relatedMovies, relatedMoviesContainer)
 }
 
 getTrendingMoviesPreview()

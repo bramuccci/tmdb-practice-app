@@ -20,7 +20,7 @@ backToHomeButtons.forEach(button =>
 
 function navigator() {
     pages.forEach(page => page.classList.remove('active'))
-    // if (location.hash.startsWith('#movie')) console.log('Movie')
+    if (location.hash.startsWith('#movie')) printMovie()
     if (location.hash.startsWith('#search')) printSearch()
     if (location.hash.startsWith('#trends')) printTrending()
     if (location.hash.startsWith('#categories')) printExplore()
@@ -54,4 +54,11 @@ function printSearch() {
     if (!query) return
     query = query[1].replace(/\-/g, ' ')
     getMoviesBySearch(query)
+}
+
+function printMovie() {
+    moviePage.classList.add('active')
+    const regex = /^#movie=(.+)$/
+    let movieId = regex.exec(location.hash)[1]
+    getMovieDetail(movieId)
 }

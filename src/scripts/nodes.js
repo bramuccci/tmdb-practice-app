@@ -7,6 +7,7 @@ const explore = document.getElementById('explore')
 const genre = document.getElementById('genre')
 const search = document.getElementById('search')
 const trends = document.getElementById('trends')
+const moviePage = document.getElementById('movie')
 const pages = document.querySelectorAll('.page')
 
 // TEMPLATES
@@ -21,6 +22,7 @@ const moviesBySearch = document.querySelector('.movies-by-search')
 const moviesOnTrendingComplete = document.querySelector(
     '.movies-on-trending-complete'
 )
+const movieGenres = moviePage.querySelector('.movie-genres')
 
 // BUTTONS
 const trendingButton = homepage.querySelector('.btn-trending')

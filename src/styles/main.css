@@ -54,6 +54,6 @@ img{
     display: none;
 }
 
-a{
+a, .card{
     cursor: pointer;
 }

@@ -76,5 +76,13 @@ async function getMoviesBySearch(query) {
     search.querySelector('.title').textContent = query
 }
 
+async function getTrendingMovies() {
+    const { data } = await api('trending/movie/day')
+    const movies = data.results
+
+    createCards(movies, moviesOnTrendingComplete)
+}
+
 getTrendingMoviesPreview()
 getGenresPreview()
+getTrendingMovies()

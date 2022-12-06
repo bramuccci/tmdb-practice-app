@@ -18,6 +18,9 @@ const genresList = explore.querySelector('.genres-list')
 const moviesOnTrending = document.querySelector('.movies-on-trending')
 const moviesByGenre = document.querySelector('.movies-by-genre')
 const moviesBySearch = document.querySelector('.movies-by-search')
+const moviesOnTrendingComplete = document.querySelector(
+    '.movies-on-trending-complete'
+)
 
 // BUTTONS
 const trendingButton = homepage.querySelector('.btn-trending')

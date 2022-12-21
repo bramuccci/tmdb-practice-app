@@ -14,17 +14,21 @@ function createCards(movies, container) {
 
     movies.forEach(movie => {
         const clone = cardTemplate.cloneNode(true)
-        clone
-            .querySelector('.card')
-            .addEventListener(
-                'click',
-                () => (location.hash = `#movie=${movie.id}`)
-            )
+        const card = clone.querySelector('.card')
+        const cover = card.querySelector('.cover')
+        const title = card.querySelector('.title')
 
-        clone.querySelector('.title').textContent = movie.title
-        clone.querySelector(
-            '.cover'
-        ).src = `https://image.tmdb.org/t/p/w300/${movie.poster_path}`
+        card.addEventListener(
+            'click',
+            () => (location.hash = `#movie=${movie.id}`)
+        )
+
+        title.textContent = movie.title
+        cover.setAttribute(
+            'data-img',
+            `https://image.tmdb.org/t/p/w300/${movie.poster_path}`
+        )
+        cover.setAttribute('alt', movie.title)
 
         fragment.append(clone)
     })

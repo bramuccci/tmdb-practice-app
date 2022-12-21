@@ -36,3 +36,12 @@ const buttonNextSearch = search.querySelector('.btn-search-next')
 
 // INPUTS
 const searchInput = search.querySelector('.search-input')
+
+// SKELETON
+const cardSkeletonTemplate = document.getElementById(
+    'card-skeleton-template'
+).content
+
+const genreSkeletonTemplate = document.getElementById(
+    'genre-skeleton-template'
+).content

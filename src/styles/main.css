@@ -57,3 +57,38 @@ img{
 a, .card{
     cursor: pointer;
 }
+
+/* SKELETON */
+
+.skeleton{
+    animation: skeleton-loading 1s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+    0%{
+        background-color: hsl(200, 20%, 70%);
+    }
+
+    100%{
+        background-color: hsl(200, 20%, 95%);
+    }
+
+}
+
+.skeleton-cover{
+    width: 100%;
+    height: 20vw;
+}
+
+.skeleton-title{
+    width: 80%;
+    height: 1.75vw;
+    margin-top: .5vw;
+    margin-left: 2px;
+}
+
+.skeleton-genre{
+    width: 20vw;
+    height: 2.5vw;
+    margin-bottom: 1vw;
+}

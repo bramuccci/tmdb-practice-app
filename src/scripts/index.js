@@ -10,6 +10,8 @@ const api = axios.create({
 })
 
 function createCards(movies, container) {
+    container.innerHTML = ''
+
     movies.forEach(movie => {
         const clone = cardTemplate.cloneNode(true)
         clone
@@ -31,6 +33,8 @@ function createCards(movies, container) {
 }
 
 function createGenreList(genres, container) {
+    container.innerHTML = ''
+
     genres.forEach(genre => {
         let { id, name } = genre
         const clone = genreTemplate.cloneNode(true)
@@ -69,7 +73,6 @@ async function getMoviesByGenre({ id, name }) {
     })
     const movies = data.results
 
-    moviesByGenre.innerHTML = ''
     createCards(movies, moviesByGenre)
     genre.querySelector('.title').textContent = name
 }
@@ -81,7 +84,6 @@ async function getMoviesBySearch(query) {
         },
     })
     const movies = data.results
-    moviesBySearch.innerHTML = ''
     createCards(movies, moviesBySearch)
     search.querySelector('.title').textContent = query
 }
@@ -102,7 +104,6 @@ async function getMovieDetail(movieId) {
     title.textContent = movie.title
     description.textContent = movie.overview
     cover.src = `https://image.tmdb.org/t/p/w780/${movie.backdrop_path}`
-    movieGenres.innerHTML = ''
     createGenreList(movie.genres, movieGenres)
 
     getRelatedMovies(movieId)
@@ -111,7 +112,6 @@ async function getMovieDetail(movieId) {
 async function getRelatedMovies(movieId) {
     const { data } = await api(`movie/${movieId}/recommendations`)
     const relatedMovies = data.results
-    relatedMoviesContainer.innerHTML = ''
     createCards(relatedMovies, relatedMoviesContainer)
 }
 

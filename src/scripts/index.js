@@ -9,6 +9,18 @@ const api = axios.create({
     },
 })
 
+//  UTILS
+
+const lazyLoader = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const target = entry.target
+            const url = target.getAttribute('data-img')
+            target.setAttribute('src', url)
+        }
+    })
+})
+
 function createCards(movies, container) {
     container.innerHTML = ''
 
@@ -29,6 +41,7 @@ function createCards(movies, container) {
             `https://image.tmdb.org/t/p/w300/${movie.poster_path}`
         )
         cover.setAttribute('alt', movie.title)
+        lazyLoader.observe(cover)
 
         fragment.append(clone)
     })

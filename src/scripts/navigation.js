@@ -34,6 +34,7 @@ function printHomepage() {
 
 function printTrending() {
     trends.classList.add('active')
+    document.onscroll = () => getPaginatedMovies('trending/movie/day')
 }
 
 function printExplore() {

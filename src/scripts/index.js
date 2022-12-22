@@ -21,8 +21,8 @@ const lazyLoader = new IntersectionObserver((entries, observer) => {
     })
 })
 
-function createCards(movies, container) {
-    container.innerHTML = ''
+function createCards(movies, container, cleanContainer = true) {
+    if (cleanContainer) container.innerHTML = ''
 
     movies.forEach(movie => {
         const clone = cardTemplate.cloneNode(true)
@@ -104,6 +104,23 @@ async function getMoviesBySearch(query) {
     const movies = data.results
     createCards(movies, moviesBySearch)
     search.querySelector('.title').textContent = query
+}
+
+let page = 1
+async function getPaginatedMovies(endpoint) {
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement
+
+    const scrollIsInBottom = scrollTop + clientHeight >= scrollHeight - 30
+    if (scrollIsInBottom) {
+        page++
+        const { data } = await api(endpoint, {
+            params: {
+                page,
+            },
+        })
+        const movies = data.results
+        createCards(movies, moviesOnTrendingComplete, false)
+    }
 }
 
 async function getTrendingMovies() {

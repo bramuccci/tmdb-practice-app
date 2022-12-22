@@ -41,6 +41,7 @@ function createCards(movies, container) {
             `https://image.tmdb.org/t/p/w300/${movie.poster_path}`
         )
         cover.setAttribute('alt', movie.title)
+
         lazyLoader.observe(cover)
 
         fragment.append(clone)

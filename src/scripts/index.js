@@ -39,8 +39,9 @@ function createCards(movies, container, cleanContainer = true) {
         const card = clone.querySelector('.card')
         const cover = card.querySelector('.cover')
         const title = card.querySelector('.title')
+        const likeBtn = card.querySelector('.btn')
 
-        card.addEventListener(
+        cover.addEventListener(
             'click',
             () => (location.hash = `#movie=${movie.id}`)
         )
@@ -53,6 +54,12 @@ function createCards(movies, container, cleanContainer = true) {
         cover.setAttribute('alt', movie.title)
 
         lazyLoader.observe(cover)
+
+        likeBtn.addEventListener('click', () => {
+            // add functionalities and LS
+            console.log(`You clicked ${movie.id}!`)
+            likeBtn.classList.toggle('btn--liked')
+        })
 
         fragment.append(clone)
     })

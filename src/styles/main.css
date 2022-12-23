@@ -41,6 +41,17 @@ img{
     cursor: pointer;
 }
 
+.btn-like{
+    padding: .5em;
+    border-radius: 100%;
+    font-size: 12px;
+    aspect-ratio: 1;
+}
+
+.btn--liked{
+    background-color: #000;
+}
+
 .section-trending{
     display: flex;
     flex-direction: column;

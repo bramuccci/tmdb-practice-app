@@ -1,3 +1,4 @@
+//  DATA
 const fragment = document.createDocumentFragment()
 const api = axios.create({
     baseURL: 'https://api.themoviedb.org/3/',
@@ -17,6 +18,19 @@ function* generator(i) {
         i++
         yield i
     }
+}
+
+function toggleLikedMovie(movie) {
+    const likedMovies = JSON.parse(localStorage.getItem('liked_movies')) || {}
+
+    if (likedMovies[movie.id]) {
+        likedMovies[movie.id] = undefined
+    } else {
+        likedMovies[movie.id] = movie
+    }
+
+    localStorage.setItem('liked_movies', JSON.stringify(likedMovies))
+    console.log(JSON.parse(localStorage.getItem('liked_movies')))
 }
 
 //  UTILS
@@ -56,9 +70,8 @@ function createCards(movies, container, cleanContainer = true) {
         lazyLoader.observe(cover)
 
         likeBtn.addEventListener('click', () => {
-            // add functionalities and LS
-            console.log(`You clicked ${movie.id}!`)
             likeBtn.classList.toggle('btn--liked')
+            toggleLikedMovie(movie)
         })
 
         fragment.append(clone)

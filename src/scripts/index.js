@@ -9,6 +9,8 @@ const api = axios.create({
     },
 })
 
+let maxPage
+
 //  UTILS
 
 const lazyLoader = new IntersectionObserver((entries, observer) => {
@@ -108,8 +110,9 @@ async function getMoviesBySearch(query) {
 
 let page = 1
 async function getPaginatedMovies(endpoint) {
-    const { scrollTop, scrollHeight, clientHeight } = document.documentElement
+    if (page > maxPage) return
 
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement
     const scrollIsInBottom = scrollTop + clientHeight >= scrollHeight - 30
     if (scrollIsInBottom) {
         page++
@@ -126,6 +129,7 @@ async function getPaginatedMovies(endpoint) {
 async function getTrendingMovies() {
     const { data } = await api('trending/movie/day')
     const movies = data.results
+    maxPage = data.total_pages
 
     createCards(movies, moviesOnTrendingComplete)
 }

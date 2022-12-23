@@ -30,7 +30,7 @@ function toggleLikedMovie(movie) {
     }
 
     localStorage.setItem('liked_movies', JSON.stringify(likedMovies))
-    console.log(JSON.parse(localStorage.getItem('liked_movies')))
+    getLikedMovies()
 }
 
 //  UTILS
@@ -68,6 +68,9 @@ function createCards(movies, container, cleanContainer = true) {
         cover.setAttribute('alt', movie.title)
 
         lazyLoader.observe(cover)
+
+        const likedMovies = JSON.parse(localStorage.getItem('liked_movies'))
+        if (likedMovies[movie.id]) likeBtn.classList.add('btn--liked')
 
         likeBtn.addEventListener('click', () => {
             likeBtn.classList.toggle('btn--liked')
@@ -181,6 +184,14 @@ async function getRelatedMovies(movieId) {
     createCards(relatedMovies, relatedMoviesContainer)
 }
 
+function getLikedMovies() {
+    const likedMovies = JSON.parse(localStorage.getItem('liked_movies')) || {}
+    const likedMoviesArray = Object.values(likedMovies)
+
+    createCards(likedMoviesArray, favoritesMovies)
+}
+
 getTrendingMoviesPreview()
 getGenresPreview()
 getTrendingMovies()
+getLikedMovies()

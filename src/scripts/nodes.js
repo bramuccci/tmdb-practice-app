@@ -24,6 +24,7 @@ const moviesOnTrendingComplete = document.querySelector(
 )
 const movieGenres = moviePage.querySelector('.movie-genres')
 const relatedMoviesContainer = moviePage.querySelector('.related-movies')
+const favoritesMovies = homepage.querySelector('.favorites-movies')
 
 // BUTTONS
 const trendingButton = homepage.querySelector('.btn-trending')

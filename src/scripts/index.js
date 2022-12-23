@@ -10,6 +10,14 @@ const api = axios.create({
 })
 
 let maxPage
+let container
+let page = 1
+function* generator(i) {
+    while (true) {
+        i++
+        yield i
+    }
+}
 
 //  UTILS
 
@@ -92,6 +100,7 @@ async function getMoviesByGenre({ id, name }) {
         },
     })
     const movies = data.results
+    maxPage = data.total_pages
 
     createCards(movies, moviesByGenre)
     genre.querySelector('.title').textContent = name
@@ -108,21 +117,19 @@ async function getMoviesBySearch(query) {
     search.querySelector('.title').textContent = query
 }
 
-let page = 1
-async function getPaginatedMovies(endpoint) {
+async function getPaginatedMovies(endpoint, params = {}, pageGenerator) {
     if (page > maxPage) return
-
     const { scrollTop, scrollHeight, clientHeight } = document.documentElement
     const scrollIsInBottom = scrollTop + clientHeight >= scrollHeight - 30
+
     if (scrollIsInBottom) {
-        page++
+        page = pageGenerator.next().value
+        params.page = page
         const { data } = await api(endpoint, {
-            params: {
-                page,
-            },
+            params,
         })
         const movies = data.results
-        createCards(movies, moviesOnTrendingComplete, false)
+        createCards(movies, container, false)
     }
 }
 

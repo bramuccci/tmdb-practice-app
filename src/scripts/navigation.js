@@ -34,7 +34,9 @@ function printHomepage() {
 
 function printTrending() {
     trends.classList.add('active')
-    document.onscroll = () => getPaginatedMovies('trending/movie/day')
+    container = moviesOnTrendingComplete
+    const page = generator(1)
+    document.onscroll = () => getPaginatedMovies('trending/movie/day', {}, page)
 }
 
 function printExplore() {
@@ -45,7 +47,15 @@ function printMoviesByGenre() {
     genre.classList.add('active')
     const regex = /category=(\d+)-(.*)/
     const genreData = regex.exec(location.hash)
-    getMoviesByGenre({ id: genreData[1], name: genreData[2] })
+    const id = genreData[1]
+    const name = genreData[2]
+
+    container = moviesByGenre
+    getMoviesByGenre({ id, name })
+    const page = generator(1)
+
+    document.onscroll = () =>
+        getPaginatedMovies('discover/movie', { with_genres: id }, page)
 }
 
 function printSearch() {
